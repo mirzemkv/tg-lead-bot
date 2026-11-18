@@ -1,0 +1,38 @@
+[project]
+name = "tg-lead-bot"
+version = "1.0.0"
+description = "Telegram-бот приёма заявок с админ-панелью, статистикой и выгрузкой в CSV"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "aiogram>=3.22,<4",
+    "aiosqlite>=0.20,<1",
+    "pydantic-settings>=2.4,<3",
+    "python-dotenv>=1.0,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0,<9",
+    "pytest-asyncio>=0.24,<2",
+    "ruff>=0.6,<1",
+]
+proxy = [
+    "aiohttp-socks>=0.9,<1",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "ASYNC"]
